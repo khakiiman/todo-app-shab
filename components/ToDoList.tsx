@@ -48,7 +48,7 @@ const TodoList: React.FC<TodoListProps> = ({ todos }) => {
               className={`flex items-center justify-between pl-4 h-10 ${todo.completed ? "bg-green-600" : "bg-slate-700"} rounded-tl-md rounded-bl-md w-10/12`}
               onClick={() => handleToggleTodo(todo.id)}
             >
-              <span className={`cursor-pointer ${todo.completed ? "line-through" : ""}`}>
+              <span className={`truncate cursor-pointer ${todo.completed ? "line-through" : ""}`}>
                 {todo.text}
               </span>
             </li>
