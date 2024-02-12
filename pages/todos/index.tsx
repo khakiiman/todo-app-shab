@@ -41,13 +41,12 @@ export default function ToDos() {
               Delete Completed Todos
             </button>
           </div>}
-        {filteredTodos.length > 0 && 
-        <div className="flex flex-col xs:flex-row  xs:justify-between mb-4">
+        {<div className="flex flex-col xs:flex-row  xs:justify-between mb-4">
           <h1 className="h-full text-lg font-semibold">Filters :</h1>
           <div className="flex flex-col xs:flex-row gap-2">
             <button
               type="submit"
-              className="flex w-1/3 xs:w-full items-center justify-center xs:justify-start font-semibold text-sm xs:text-md bg-blue-500 hover:bg-blue-600 text-white py-4 h-8 xs:px-4 xs:py-0 rounded-md active:bg-blue-200"
+              className="flex w-1/3 xs:w-full items-center justify-center xs:justify-start font-semibold text-sm xs:text-md bg-blue-500 hover:bg-blue-600 text-white py-4 h-8 xs:px-4 xs:py-0 rounded-md"
               onClick={() => dispatch(setFilterAll())}
             >
               All
