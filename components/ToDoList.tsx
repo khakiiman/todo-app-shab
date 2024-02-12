@@ -8,9 +8,16 @@ import {
   deleteTodo,
 } from "../redux/todoSlice";
 
-const TodoList: React.FC = () => {
-  const todos = useSelector(selectTodos);
+export interface Todo {
+  id: number;
+  text: string;
+  completed: boolean;
+}
+interface TodoListProps {
+  todos: Todo[];
+}
 
+const TodoList: React.FC<TodoListProps> = ({ todos }) => {
   const dispatch = useDispatch();
 
   const handleToggleTodo = (id: number) => {
@@ -38,14 +45,10 @@ const TodoList: React.FC = () => {
         todos.map((todo) => (
           <li key={todo.id} className="flex items-center w-full">
             <li
-              className={`flex items-center justify-between pl-4 h-10 ${todo.completed ? "bg-green-600" : "bg-slate-700"
-                } rounded-tl-md rounded-bl-md w-10/12`}
-                onClick={() => handleToggleTodo(todo.id)}
+              className={`flex items-center justify-between pl-4 h-10 ${todo.completed ? "bg-green-600" : "bg-slate-700"} rounded-tl-md rounded-bl-md w-10/12`}
+              onClick={() => handleToggleTodo(todo.id)}
             >
-              <span
-                className={`cursor-pointer ${todo.completed ? "line-through" : ""
-                  }`}
-              >
+              <span className={`cursor-pointer ${todo.completed ? "line-through" : ""}`}>
                 {todo.text}
               </span>
             </li>
@@ -55,8 +58,8 @@ const TodoList: React.FC = () => {
                 onClick={() => handleDeleteTodo(todo.id)}
               >
                 <span className="xs:hidden">X</span>
-                <span className="hidden xs:flex xs:justify-center">Delete</span>
-                
+                <span className="hidden xs:flex xs:justify-center text-sm">Delete</span>
+
               </button>
             </li>
           </li>

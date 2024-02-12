@@ -10,10 +10,12 @@ export interface Todo {
 
 interface TodoState {
   todos: Todo[];
+  filter: 'all' | 'completed' | 'active';
 }
 
 const initialState: TodoState = {
   todos: [],
+  filter: 'all',
 };
 
 const todosSlice = createSlice({
@@ -37,15 +39,24 @@ const todosSlice = createSlice({
     },
     setTodos: (state, action: PayloadAction<Todo[]>) => {
       state.todos = action.payload;
-    },    
-    clearTodos: (state) => {
-      state.todos = [];
-      localStorage.removeItem("todos");
+    },
+    clearCompletedTodos: (state) => {
+      state.todos = state.todos.filter((todo) => !todo.completed);
+      saveTodosToLocalStorage(state.todos);
+    },
+    setFilterAll: (state) => {
+      state.filter = 'all';
+    },
+    setFilterCompleted: (state) => {
+      state.filter = 'completed';
+    },
+    setFilterActive: (state) => {
+      state.filter = 'active';
     },
   },
 });
 
-export const { addTodo, toggleTodo, deleteTodo, setTodos, clearTodos } = todosSlice.actions;
+export const { addTodo, toggleTodo, deleteTodo, setTodos, clearCompletedTodos, setFilterAll, setFilterCompleted, setFilterActive, } = todosSlice.actions;
 export default todosSlice.reducer;
 
 export const selectTodos = (state: RootState) => state.todos.todos;
