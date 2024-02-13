@@ -1,18 +1,7 @@
-"use client";
 import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  selectTodos,
-  toggleTodo,
-  setTodos,
-  deleteTodo,
-} from "../redux/todoSlice";
-
-export interface Todo {
-  id: number;
-  text: string;
-  completed: boolean;
-}
+import { useDispatch } from "react-redux";
+import { toggleTodo, setTodos, deleteTodo } from "../redux/todoSlice";
+import { Todo } from '../redux/todoSlice';
 interface TodoListProps {
   todos: Todo[];
 }

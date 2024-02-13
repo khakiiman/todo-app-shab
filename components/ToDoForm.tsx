@@ -1,4 +1,3 @@
-"use client";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addTodo, Todo } from "../redux/todoSlice";

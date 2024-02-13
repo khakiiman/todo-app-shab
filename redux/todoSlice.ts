@@ -7,8 +7,7 @@ export interface Todo {
   text: string;
   completed: boolean;
 }
-
-interface TodoState {
+export interface TodoState {
   todos: Todo[];
   filter: 'all' | 'completed' | 'active';
 }

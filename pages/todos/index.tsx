@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { createSelector } from '@reduxjs/toolkit';
-import { selectTodos, clearCompletedTodos, setFilterAll, setFilterCompleted, setFilterActive } from "../../redux/todoSlice";
+import { clearCompletedTodos, setFilterAll, setFilterCompleted, setFilterActive, Todo, TodoState } from "../../redux/todoSlice";
 import TodoList from "../../components/ToDoList";
 import ToDoForm from "../../components/ToDoForm";
 
@@ -8,14 +8,14 @@ export default function ToDos() {
   const dispatch = useDispatch();
 
   const selectFilteredTodos = createSelector(
-    (state: any) => state.todos.todos,
-    (state) => state.todos.filter,
+    (state: TodoState) => state.todos.todos,
+    (state: TodoState) => state.todos.filter,
     (todos, filter) => {
       switch (filter) {
         case 'completed':
-          return todos.filter((todo: any) => todo.completed);
+          return todos.filter((todo: Todo) => todo.completed);
         case 'active':
-          return todos.filter((todo: any) => !todo.completed);
+          return todos.filter((todo: Todo) => !todo.completed);
         default:
           return todos;
       }
@@ -29,7 +29,7 @@ export default function ToDos() {
         <div className="flex justify-center items-center mb-6">
           <h1 className="h-full text-2xl font-semibold">Todo List</h1>
         </div>
-        {filteredTodos.length > 0 &&
+        {filteredTodos.map((filteredTodo: Todo) => filteredTodo.completed).length > 0 &&
           <div className="flex justify-end mb-4">
             <button
               type="submit"
